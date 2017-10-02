@@ -1,0 +1,9 @@
+# IntelliJ specific
+.idea/
+
+# SBT Specific
+target/
+project/target
+project/project
+noise-analyzer/target
+

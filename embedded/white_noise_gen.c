@@ -25,7 +25,7 @@
 #define hidden_micro_period (long) 1000
 
 // Length of total captured signal in milliseconds
-#define singal_milli_length 1000
+#define singal_milli_length 10
 
 
 /**

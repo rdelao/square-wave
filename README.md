@@ -2,6 +2,12 @@
 White noise in square wave
 
 
+# Running the Demo
+
+```bash
+./bin/demo.sh
+```
+
 # Generate white noise data
 
 ## compiling
@@ -55,7 +61,7 @@ gcc detect.c -o detect
 Example usage:
 
 ```bash
-./bin/detect data.txt <hidden amplitude"
+./bin/detect data.txt <hidden amplitude>
 ```
 
 This program will find the provided hidden amplitude in the

@@ -81,7 +81,7 @@ int main( int argc, char** argv ) {
 	long hidden_offset = rand_long(minimum_micro_offset, maximum_micro_offset);
     long t_max = singal_milli_length * ((long) 1000);
 	long t;
-	printf("Generated hidden signal offset: %li microsends\n", hidden_offset);
+	printf("Generated hidden signal offset: %li microseconds\n", hidden_offset);
 	printf("Generated hidden signal amplitude: %.9f\n", hiddin_amplitude);
     
 	for (t = 0; t < t_max; t++) {

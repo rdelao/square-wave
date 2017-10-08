@@ -28,12 +28,21 @@ object Analyzer {
         val dataPoint: DataPoint = (data.apply(0).toDouble, data.apply(1).toDouble)
         (acc._1 :+ dataPoint._1, acc._2 :+ dataPoint._2)
       }
+    val uniques = amp.toSet
+    val hidden_amplitude = uniques.find { u =>
+      amp.count(_ == u) == 10D
+    }.getOrElse(0D)
+    val hiddenAmp = amp.map { a =>
+      if (a == hidden_amplitude) hidden_amplitude else 0D
+    }
+    val test = time.map(_ => 1D)
     val timePlt: DenseVector[Double] = DenseVector(time: _*)
     val ampPlt: DenseVector[Double] = DenseVector(amp: _*)
-    println(timePlt(0))
-    println(ampPlt(0))
     plt += plot(timePlt, ampPlt, name = "White Noise")
     fig.refresh()
+    plt += plot(timePlt, hiddenAmp, name = "Hidden signal", colorcode = "red")
+    fig.refresh()
+    fig.saveas("noise.png")
   }
 
   /** Main entry point to the program */

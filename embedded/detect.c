@@ -5,6 +5,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
+
 
 char* usage() {
   return "\n \
@@ -32,6 +34,7 @@ int main( int argc, char** argv ) {
   int first_sync_pulse = 0;
   long current_millisecond = 1;
   float *ptr;
+  float *current_a;
   c = '~';
   // read csv into array of amplitudes (as)
   while (c != EOF) {
@@ -65,14 +68,21 @@ int main( int argc, char** argv ) {
   };
 
   ptr = as;
+  current_a = ptr;
 
   // find first sync pule and store pointer
   for(i = 0; i < 1000000; i++) {
-    if (as[i] == hidden_amplitude && first_sync_pulse == 0) {
+    // printf("%p\n", current_a);
+    // printf("%f\n", *(current_a + 1));
+    if (*current_a == hidden_amplitude &&
+        first_sync_pulse == 0 &&
+        *(current_a + (1 * 1000)) == *current_a) {
       first_sync_pulse = i;
+      printf("found hiddel amplitude %f\n", as[i]);
       ptr = &as[i];
       break;
     };
+    current_a = current_a + 1;
   };
   if (first_sync_pulse == 0) {
     printf("Failed to discover hidden signal!\n\n");
